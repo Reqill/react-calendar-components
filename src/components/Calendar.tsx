@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import scssClasses from '../styles/calendar.module.scss';
+import './calendar.css';
 import { WEEKDAYS, MONTHS, getDaysInMonth, hexToRGB } from './misc';
 import { ChevronLeft, ChevronRight } from "react-feather";
 import { CalendarProps, Color, Event } from './types'
@@ -15,7 +15,7 @@ const MonthChangeBtn: React.FC<{ direction: "LEFT" | "RIGHT", callback: (x: any)
                 // onMouseEnter={()=>setHover(true)}
                 // onMouseLeave={()=>setHover(false)}
                 onClick={() => callback("_PREV_")}
-                className={scssClasses.monthChangeBtn}
+                className="monthChangeBtn"
             >
                 <ChevronLeft
                     size={18}
@@ -31,7 +31,7 @@ const MonthChangeBtn: React.FC<{ direction: "LEFT" | "RIGHT", callback: (x: any)
                 // onMouseEnter={()=>setHover(true)}
                 // onMouseLeave={()=>setHover(false)}
                 onClick={() => callback("_NEXT_")}
-                className={scssClasses.monthChangeBtn}
+                className="monthChangeBtn"
             >
                 <ChevronRight
                     size={18}
@@ -112,9 +112,9 @@ const Calendar: React.FC<CalendarProps> = ({
         return WEEKDAYS.map((el) => (
             <div
                 key={`${el}_header`}
-                className={scssClasses.headerBox}
+                className="headerBox"
             >
-                <p className={scssClasses.headerText}>
+                <p className="headerText">
                     {el.substring(0, 3)}
                 </p>
             </div>
@@ -187,19 +187,19 @@ const Calendar: React.FC<CalendarProps> = ({
         return data.map((el: Event, i: number) =>
             <div key={String(el.name) + "_" + String(i)} style={{ display: "flex", flexDirection: "column", marginBottom: ".4rem", marginTop: ".5rem" }}>
                 <div style={{ display: "inline-flex", justifyContent: "space-between" }}>
-                    <p className={scssClasses.eventTitle}>
+                    <p className="eventTitle">
                         {el.name}
                     </p>
                     {
                         el.hour &&
-                        <p style={{ margin: "0", padding: "0", fontSize: "1rem", color: "#aaaaaa", fontWeight: "300" }}>
+                        <p style={{ margin: "0", padding: "0", fontSize: "1rem", color: "#aaaaaa", fontWeight: 300 }}>
                             {el.hour} {el.endHour && <span>&nbsp;–&nbsp;{el.endHour}</span>}
                         </p>
                     }
                 </div>
                 {
                     el.description &&
-                    <p className={scssClasses.eventDescription}>
+                    <p className="eventDescription">
                         {el.description}
                     </p>
                 }
@@ -209,12 +209,12 @@ const Calendar: React.FC<CalendarProps> = ({
 
     return (
         <div style={{ margin: ".5rem", maxWidth: MAX_WIDTH, minWidth: "300px", width: "100%", fontSize: FONT_SIZE }}>
-            <div className={scssClasses.outside} style={{ boxShadow: shadow ? "0 7px 15px rgba(0, 0, 0, .05)" : "0 0 0 rgba(141, 113, 0, .0)", borderRadius: rounded ? "1rem" : "0" }}>
-                <div style={{ borderTopLeftRadius: rounded ? "1rem" : "0", borderTopRightRadius: rounded ? "1rem" : "0", backgroundColor: labelColor }} className={scssClasses.topBar}>
+            <div className="outside" style={{ boxShadow: shadow ? "0 7px 15px rgba(0, 0, 0, .05)" : "0 0 0 rgba(141, 113, 0, .0)", borderRadius: rounded ? "1rem" : "0" }}>
+                <div style={{ borderTopLeftRadius: rounded ? "1rem" : "0", borderTopRightRadius: rounded ? "1rem" : "0", backgroundColor: labelColor }} className="topBar">
                     <MonthChangeBtn direction="LEFT" callback={_changeMonth} color={headerColor} />
                     <p
                         style={{ color: headerColor }}
-                        className={scssClasses.monthIndicator}
+                        className="monthIndicator"
                         onClick={() => _setDateToday()}
                     >
                         {MONTHS[currentMonth].toUpperCase()}&nbsp;{currentYear}
@@ -232,8 +232,8 @@ const Calendar: React.FC<CalendarProps> = ({
                         paddingTop: "1.1rem"
                     }}
                 >
-                    <div className={scssClasses.sevenGrid}>{_generateHeader()}</div>
-                    <div className={scssClasses.sevenGrid}>{_generateDay()}</div>
+                    <div className="sevenGrid">{_generateHeader()}</div>
+                    <div className="sevenGrid">{_generateDay()}</div>
                 </div>
                 {
                     previewData[0] &&

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import scssClasses from '../styles/calendar.module.scss';
+import './calendar.css';
 import { hexToRGB } from './misc';
 import { CellProps, Event } from './types';
 
@@ -62,7 +62,7 @@ const CalendarCell: React.FC<CellProps> = ({
                         : onPress(idx - daysBefore + 1, eventsInfo);
             }}
             title={[...primTitles, ...secTitles].join("\n")}
-            className={scssClasses.calendarCell}
+            className="calendarCell"
             style={{
                 backgroundColor: isToday ? hover ? hexToRGB(labelColor, .35) : hexToRGB(labelColor, .2) : hover ? "rgba(0,0,0,.065)" : "white",
                 cursor: ((newPrimEvents[0] !== undefined || newSecEvents[0] !== undefined) && showEventsOnClick) ? "pointer" : "default",
@@ -73,30 +73,30 @@ const CalendarCell: React.FC<CellProps> = ({
             {newPrimEvents[0] && (
                 <div
                     style={{ backgroundColor: newPrimEvents[0].color || labelColor }}
-                    className={scssClasses.primaryIndex} />
+                    className="primaryIndex" />
             )}
             {type === "_BEFORE_" ? (
-                <p className={scssClasses.irrelevantDate}>
+                <p className="irrelevantDate">
                     {idx + 1 - daysBefore + daysInPrevMonth}
                 </p>
             ) : type === "_CURRENT_" ? (
                 <p
                     style={{ color: newPrimEvents.length > 0 ? bgColor : isSunday ? "#FF1818" : isSaturday ? "#6e6e6e" : "#222222" }}
-                    className={scssClasses.calendarDate}
+                    className="calendarDate"
                 >
                     {idx + 1 - daysBefore}
                 </p>
             ) : (
                 type === "_AFTER_" && (
-                    <p className={scssClasses.irrelevantDate}>
+                    <p className="irrelevantDate">
                         {idx + 1 - daysBefore - daysCurrent}
                     </p>
                 )
             )}
-            <div className={scssClasses.secondaryDiv}>
+            <div className="secondaryDiv">
                 {newSecEvents.map((secEvent: Event, i) => (
                     <div key={String(secEvent) + "_" + String(i)}
-                        className={scssClasses.secondaryIndex}
+                        className="secondaryIndex"
                         style={{
                             backgroundColor: secEvent.color || labelColor
                         }} />
