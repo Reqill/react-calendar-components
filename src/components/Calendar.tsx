@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import './calendar.css';
+import cssClasses from '../styles/calendar.module.css';
 import { WEEKDAYS, MONTHS, getDaysInMonth, hexToRGB } from './misc';
-import { ChevronLeft, ChevronRight } from "react-feather";
 import { CalendarProps, Color, Event } from './types'
 import CalendarCell from "./CalendarCell";
 
@@ -15,14 +14,16 @@ const MonthChangeBtn: React.FC<{ direction: "LEFT" | "RIGHT", callback: (x: any)
                 // onMouseEnter={()=>setHover(true)}
                 // onMouseLeave={()=>setHover(false)}
                 onClick={() => callback("_PREV_")}
-                className="monthChangeBtn"
+                style={{ color: color }}
+                className={cssClasses.monthChangeBtn}
             >
-                <ChevronLeft
+                {"<"}
+                {/* <ChevronLeft
                     size={18}
                     color={color}
                     strokeWidth="2.5px"
                     style={{ margin: "auto", marginLeft: "-1px" }}
-                />
+                /> */}
             </div>
         );
     } else if (direction === "RIGHT") {
@@ -31,14 +32,16 @@ const MonthChangeBtn: React.FC<{ direction: "LEFT" | "RIGHT", callback: (x: any)
                 // onMouseEnter={()=>setHover(true)}
                 // onMouseLeave={()=>setHover(false)}
                 onClick={() => callback("_NEXT_")}
-                className="monthChangeBtn"
+                style={{ color: color }}
+                className={cssClasses.monthChangeBtn}
             >
-                <ChevronRight
+                {">"}
+                {/* <ChevronRight
                     size={18}
                     color={color}
                     strokeWidth="2.5px"
                     style={{ margin: "auto", marginRight: "-1px" }}
-                />
+                /> */}
             </div>
         );
     } else return <></>
@@ -112,9 +115,9 @@ const Calendar: React.FC<CalendarProps> = ({
         return WEEKDAYS.map((el) => (
             <div
                 key={`${el}_header`}
-                className="headerBox"
+                className={cssClasses.headerBox}
             >
-                <p className="headerText">
+                <p className={cssClasses.headerText}>
                     {el.substring(0, 3)}
                 </p>
             </div>
@@ -187,7 +190,7 @@ const Calendar: React.FC<CalendarProps> = ({
         return data.map((el: Event, i: number) =>
             <div key={String(el.name) + "_" + String(i)} style={{ display: "flex", flexDirection: "column", marginBottom: ".4rem", marginTop: ".5rem" }}>
                 <div style={{ display: "inline-flex", justifyContent: "space-between" }}>
-                    <p className="eventTitle">
+                    <p className={cssClasses.eventTitle}>
                         {el.name}
                     </p>
                     {
@@ -199,7 +202,7 @@ const Calendar: React.FC<CalendarProps> = ({
                 </div>
                 {
                     el.description &&
-                    <p className="eventDescription">
+                    <p className={cssClasses.eventDescription}>
                         {el.description}
                     </p>
                 }
@@ -209,12 +212,12 @@ const Calendar: React.FC<CalendarProps> = ({
 
     return (
         <div style={{ margin: ".5rem", maxWidth: MAX_WIDTH, minWidth: "300px", width: "100%", fontSize: FONT_SIZE }}>
-            <div className="outside" style={{ boxShadow: shadow ? "0 7px 15px rgba(0, 0, 0, .05)" : "0 0 0 rgba(141, 113, 0, .0)", borderRadius: rounded ? "1rem" : "0" }}>
-                <div style={{ borderTopLeftRadius: rounded ? "1rem" : "0", borderTopRightRadius: rounded ? "1rem" : "0", backgroundColor: labelColor }} className="topBar">
+            <div className={cssClasses.outside} style={{ boxShadow: shadow ? "0 7px 15px rgba(0, 0, 0, .05)" : "0 0 0 rgba(141, 113, 0, .0)", borderRadius: rounded ? "1rem" : "0" }}>
+                <div style={{ borderTopLeftRadius: rounded ? "1rem" : "0", borderTopRightRadius: rounded ? "1rem" : "0", backgroundColor: labelColor }} className={cssClasses.topBar}>
                     <MonthChangeBtn direction="LEFT" callback={_changeMonth} color={headerColor} />
                     <p
                         style={{ color: headerColor }}
-                        className="monthIndicator"
+                        className={cssClasses.monthIndicator}
                         onClick={() => _setDateToday()}
                     >
                         {MONTHS[currentMonth].toUpperCase()}&nbsp;{currentYear}
@@ -232,8 +235,8 @@ const Calendar: React.FC<CalendarProps> = ({
                         paddingTop: "1.1rem"
                     }}
                 >
-                    <div className="sevenGrid">{_generateHeader()}</div>
-                    <div className="sevenGrid">{_generateDay()}</div>
+                    <div className={cssClasses.sevenGrid}>{_generateHeader()}</div>
+                    <div className={cssClasses.sevenGrid}>{_generateDay()}</div>
                 </div>
                 {
                     previewData[0] &&

@@ -1,46 +1,35 @@
 {
   "name": "react-calendar-components",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "calendar and date-picker UI components for React",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Reqill/react-calendar-components.git"
-  },
-  "main": "dist/index.js",
-  "author": "Mikołaj Mrózek",
+  "repository": "https://github.com/Reqill/react-calendar-components.git",
+  "author": "Mikołaj Mrózek <mikolaj.marcin.mrozek@gmail.com>",
   "license": "MIT",
-  "keywords": [
-    "react",
-    "ui",
-    "components",
-    "calendar",
-    "date",
-    "picker",
-    "events"
-  ],
-  "bugs": {
-    "url": "https://github.com/Reqill/react-calendar-components/issues"
-  },
-  "homepage": "https://github.com/Reqill/react-calendar-components#readme",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
   "scripts": {
-    "build": "tsc"
-  },
-  "dependencies": {
-    "feather-icons": "^4.29.0"
-  },
-  "devDependencies": {
-    "@types/react": "18.0.0",
-    "@types/react-dom": "18.0.0",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "typescript": "4.6.2"
+    "prestart": "npm-link-shared ./node_modules/example/node_modules . react",
+    "build": "rollup -c"
   },
   "peerDependencies": {
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "postcss": "^8.4.13",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "rollup": "^2.73.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "typescript": "^4.6.4",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "tslib": "^2.4.0"
   },
   "files": [
-    "/dist",
-    "package.json"
+    "lib"
   ]
 }
