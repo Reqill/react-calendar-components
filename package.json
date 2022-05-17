@@ -3,6 +3,9 @@
   "version": "1.1.1",
   "description": "calendar and date-picker UI components for React",
   "repository": "https://github.com/Reqill/react-calendar-components.git",
+  "bugs": {
+    "url": "https://github.com/Reqill/react-calendar-components/issues"
+  },
   "author": "Mikołaj Mrózek <mikolaj.marcin.mrozek@gmail.com>",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
